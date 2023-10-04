@@ -1,0 +1,26 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MassageStudio.Areas.Identity.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (User.Identity.IsAuthenticated)
+{
+    var user = await UserManager.GetUserAsync(User);
+    if(user != null)
+    {
+        var userRole = await UserManager.GetRolesAsync(user);
+        if (userRole.Contains("Masseur"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-secondary" asp-area="" asp-controller="Masseur" asp-action="AddTerm">Dodaj termin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary" asp-area="" asp-controller="Masseur" asp-action="AllTerms">wszystkie terminy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-secondary" asp-area="" asp-controller="Masseur" asp-action="OldTerms">stare terminy</a>
+            </li>
+        }
+    }
+}

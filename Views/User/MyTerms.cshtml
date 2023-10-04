@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MassageStudio.App.Models.Massage>
+@{
+    ViewData["Title"] = "MyTerms";
+}
+
+<h1>Moje umuwione spotkania</h1>
+@if(!@Model.Any())
+{
+ <p>Nie masz zadnych masazy</p>   
+}
+else
+{
+    
+<ul class="list-group">
+
+    @foreach (var m in Model)
+    {
+        if (m.Date > DateTime.Now)
+        {
+            <li class="list-group-item-info">@m.Date | @m.Type</li>
+        }
+        
+    }
+    @foreach (var m in Model)
+    {
+        if (m.Date <= DateTime.Now)
+        {
+            <li class="list-group-item-danger">@m.Date | @m.Type</li>
+        }
+
+    }
+</ul>
+}
+

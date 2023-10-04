@@ -1,0 +1,19 @@
+﻿@using MassageStudio.App.Models;
+@model Massage
+@{
+    ViewData["Title"] = "Details";
+}
+
+<form action="/User/Details" method="post">
+    <label asp-for="Date">Data</label>
+    <input type="text" readonly asp-for="@Model.termId" style="visibility:hidden"/>
+    <input asp-for="@Model.Date" readonly type="datetime-local">
+
+    <select class="form-select" asp-for="@Model.Type" multiple aria-label="multiple select example">
+        <option selected value="glowa">glowa</option>
+        <option value="plecy">plecy</option>
+        <option value="wszystko">wszystko</option>
+    </select>
+    <button type="submit">Zarezerwuj</button>
+</form>
+

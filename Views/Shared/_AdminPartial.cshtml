@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MassageStudio.Areas.Identity.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@if (User.Identity.IsAuthenticated)
+{
+    var user = await UserManager.GetUserAsync(User);
+    if(user != null)
+    {
+        var userRole = await UserManager.GetRolesAsync(user);
+        if (userRole.Contains("Admin"))
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">AdminHome</a>
+            </li>
+        }
+    }
+}

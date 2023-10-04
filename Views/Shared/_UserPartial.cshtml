@@ -1,0 +1,24 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MassageStudio.Areas.Identity.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+
+@if (User.Identity.IsAuthenticated)
+{
+    var user = await UserManager.GetUserAsync(User);
+    if (user != null)
+    {
+        var userRole = await UserManager.GetRolesAsync(user);
+        if (!userRole.Any())
+        {
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Terminy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="MyTerms">Moje rezerwacje</a>
+            </li>
+        }
+    }
+}

@@ -1,0 +1,7 @@
+﻿@using MassageStudio.App.Models;
+@model Term
+<form action="/Masseur/AddTerm" method="post">
+    <label asp-for="Date">Data</label>
+    <input asp-for="Date" type="datetime-local">
+    <button type="submit">Dodaj Termin</button>
+</form>

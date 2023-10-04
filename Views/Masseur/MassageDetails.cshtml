@@ -1,0 +1,15 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using MassageStudio.Areas.Identity.Data
+
+@model MassageStudio.App.Models.Massage
+@inject UserManager<User> UserManager
+@{
+    ViewData["Title"] = "Details";
+    var user = await UserManager.FindByIdAsync(Model.UserId);
+}
+
+<h1>Szczegóły</h1>
+<p>data i czas : @Model.Date</p>
+<p>typ masazu  : @Model.Type</p>
+<p>osoba do m  : @user.UserName</p>
+

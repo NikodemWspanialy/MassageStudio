@@ -1,0 +1,20 @@
+﻿@model IEnumerable<MassageStudio.App.Models.Term>
+@{
+    ViewData["Title"] = "OldTerms";
+}
+
+<h1>Old Terms</h1>
+<ul class="list-group">
+    @foreach (var t in Model)
+    {
+        if (t.Reserved == true)
+        {
+            <li class="list-group-item"><span class="text-danger">@t.Date | @t.Id</span> <a href="@Url.Action("MassageDetails", "Masseur", new{Id = t.Id})" )>Szczególy</a></li>
+        }
+        else
+        {
+            <li class="list-group-item"><span class="text-success">@t.Date | @t.Id</span> <a href="@Url.Action("TermDetails", "Masseur", new{Id = t.Id})" )>Szczególy</a></li>
+
+        }
+    }
+</ul>
